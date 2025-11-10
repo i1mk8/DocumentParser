@@ -9,7 +9,7 @@
 ## Установка
 `pip install git+https://github.com/i1mk8/DocumentParser.git`
 ## Использование
-```
+```python
 >>> from DocumentParser import DocumentParser
 
 >>> # Необходимо указывать при обработке изображений, если tesseract не добавлен в PATH

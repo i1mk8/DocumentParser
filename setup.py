@@ -1,7 +1,10 @@
 from setuptools import setup, find_packages
 
-with open('requirements.txt') as f:
-    required = f.read().splitlines()
+with open('requirements.txt', 'r', encoding='utf-8') as file:
+    required = file.read().splitlines()
+
+with open('README.md', 'r', encoding='utf-8') as file:
+    long_description = file.read()
 
 setup(
     name='document-parser',

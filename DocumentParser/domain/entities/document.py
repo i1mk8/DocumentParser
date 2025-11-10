@@ -9,3 +9,6 @@ class Document(BaseModel):
     source_type: str
 
     pages: List[Page]
+
+    def to_json(self, **kwargs) -> str:
+        return self.model_dump_json(**kwargs)

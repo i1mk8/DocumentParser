@@ -1,4 +1,8 @@
 from DocumentParser import DocumentParser
 
 document_parser = DocumentParser()
-print(document_parser.parse('document.pdf'))
+result = document_parser.parse('document.pdf')
+
+print(result)
+with open('result.json', 'w', encoding='utf-8') as file:
+    file.write(result.to_json(indent=4))

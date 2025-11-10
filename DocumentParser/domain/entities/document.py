@@ -1,0 +1,11 @@
+from pydantic import BaseModel
+from typing import List
+
+from DocumentParser.domain.entities.page import Page
+
+
+class Document(BaseModel):
+    path: str
+    source_type: str
+
+    pages: List[Page]

@@ -7,7 +7,11 @@
 * PDF
 * PNG, JPG, JPEG, TIFF, BMP, GIF
 ## Установка
-`pip install git+https://github.com/i1mk8/DocumentParser.git`
+Для обработки изображений требуется установить [Tesseract](https://github.com/tesseract-ocr/tesseract)
+```
+git submodule add https://github.com/i1mk8/DocumentParser.git
+pip install -e DocumentParser
+```
 ## Использование
 ```python
 >>> from DocumentParser import DocumentParser

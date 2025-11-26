@@ -8,7 +8,7 @@ with open('README.md', 'r', encoding='utf-8') as file:
 
 setup(
     name='document-parser',
-    version='1.0.0',
+    version='1.1.0',
     author='Aksenov Mikhail',
 
     description='Пакет для разбивки различных документов (docx, pdf, изображения) на страницы, блоки, строки и слова',

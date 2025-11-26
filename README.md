@@ -8,6 +8,8 @@
 * PNG, JPG, JPEG, TIFF, BMP, GIF
 ## Установка
 Для обработки изображений требуется установить [Tesseract](https://github.com/tesseract-ocr/tesseract)
+
+Для обработки DOCX требуется установить [LibreOffice](https://libreoffice.org)
 ```
 git submodule add https://github.com/i1mk8/DocumentParser.git
 pip install -e DocumentParser
@@ -16,10 +18,7 @@ pip install -e DocumentParser
 ```python
 >>> from DocumentParser import DocumentParser
 
->>> # Необходимо указывать при обработке изображений, если tesseract не добавлен в PATH
->>> TESSERACT_PATH = r'C:\Program Files\Tesseract-OCR\tesseract'
-
->>> document_parser = DocumentParser(TESSERACT_PATH)
+>>> document_parser = DocumentParser()
 >>> result = document_parser.parse('image.png')
 
 >>> result
@@ -30,8 +29,8 @@ Document(
         blocks=[Block(
             lines=[Line(
                 words=[Word(
-                word='Пример',
-                bounding_box=BoundingBox(left=28.3, top=32.0, right=36.1, bottom=33.2))]
+                    word='Пример',
+                    bounding_box=BoundingBox(left=28.3, top=32.0, right=36.1, bottom=33.2))]
             )]
         )]
     )]

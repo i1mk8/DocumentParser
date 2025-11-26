@@ -13,8 +13,7 @@ from DocumentParser.infrastructure.PdfParser.PdfParser import PdfParser
 
 
 class DocxParser(IDocumentParser):
-    _WINDOWS_PATH = r'C:\Program Files\LibreOffice\program\soffice.exe'
-    _LINUX_PATH = r'/usr/bin/libreoffice'
+    _LIBRE_OFFICE_WINDOWS_PATH = r'C:\Program Files\LibreOffice\program\soffice.exe'
 
     _pdf_parser = PdfParser()
 
@@ -23,12 +22,8 @@ class DocxParser(IDocumentParser):
             self._libre_office_path = libre_office_path
 
         else:
-            system = platform.system()
-
-            if system == 'Windows' and os.path.exists(self._WINDOWS_PATH):
-                self._libre_office_path = self._WINDOWS_PATH
-            elif system == 'Linux' and os.path.exists(self._LINUX_PATH):
-                self._libre_office_path = self._LINUX_PATH
+            if platform.system() == 'Windows' and os.path.exists(self._LIBRE_OFFICE_WINDOWS_PATH):
+                self._libre_office_path = self._LIBRE_OFFICE_WINDOWS_PATH
             else:
                 self._libre_office_path = 'libreoffice'
 

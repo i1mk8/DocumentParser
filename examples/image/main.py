@@ -1,9 +1,6 @@
 from DocumentParser import DocumentParser
 
-# Необходимо указывать при обработке изображений, если tesseract не добавлен в PATH
-TESSERACT_PATH = r'C:\Program Files\Tesseract-OCR\tesseract'
-
-document_parser = DocumentParser(TESSERACT_PATH)
+document_parser = DocumentParser()
 result = document_parser.parse('image.png')
 
 print(result)

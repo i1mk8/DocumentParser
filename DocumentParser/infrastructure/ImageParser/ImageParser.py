@@ -1,4 +1,6 @@
-from typing import Optional, List
+from typing import Optional
+import platform
+import os
 
 import pytesseract
 from lxml import etree
@@ -14,11 +16,16 @@ from DocumentParser.domain.entities.page import Page
 
 
 class ImageParser(IDocumentParser):
+    _TESSERACT_WINDOWS_PATH = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+
     _LXML_NAMESPACE = {'alto': 'http://www.loc.gov/standards/alto/ns-v3#'}
 
     def __init__(self, tesseract_path: Optional[str] = None):
         if tesseract_path is not None:
             pytesseract.pytesseract.tesseract_cmd = tesseract_path
+        elif platform.system() == 'Windows' and os.path.exists(self._TESSERACT_WINDOWS_PATH):
+            pytesseract.pytesseract.tesseract_cmd = self._TESSERACT_WINDOWS_PATH
+
 
     def process(self, path: str) -> Document:
         xml_ocr = pytesseract.image_to_alto_xml(path, lang='rus')

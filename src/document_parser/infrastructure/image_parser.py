@@ -19,7 +19,9 @@ class ImageParser(BaseDocumentParser):
     _TESSERACT_WINDOWS_PATH = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
     _LXML_NAMESPACE = {'alto': 'http://www.loc.gov/standards/alto/ns-v3#'}
 
-    def __init__(self, tesseract_path: Optional[str] = None):
+    def __init__(self, lang: str, tesseract_path: Optional[str] = None):
+        self._lang = lang
+
         if tesseract_path is not None:
             pytesseract.pytesseract.tesseract_cmd = tesseract_path
         elif platform.system() == 'Windows' and os.path.exists(self._TESSERACT_WINDOWS_PATH):
@@ -30,7 +32,7 @@ class ImageParser(BaseDocumentParser):
         return self._SUPPORTED_EXTENSIONS
 
     def process(self, path: str) -> Document:
-        xml_ocr = pytesseract.image_to_alto_xml(path, lang='rus')
+        xml_ocr = pytesseract.image_to_alto_xml(path, lang=self._lang)
         root = etree.fromstring(xml_ocr)
 
         block_elements = root.findall('.//alto:TextBlock', namespaces=self._LXML_NAMESPACE)

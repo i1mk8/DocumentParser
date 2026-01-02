@@ -14,17 +14,17 @@ class DocumentParser:
     Поддерживаемые форматы документов: docx, pdf, png, jpg, jpeg, tiff, bmp, gif
     """
 
-    _pdf_parser = PdfParser()
-
-    def __init__(self, tesseract_path: Optional[str]=None, libre_office_path: Optional[str]=None):
+    def __init__(self, tesseract_path: Optional[str]=None, libre_office_path: Optional[str]=None, ocr_lang: str='rus'):
         """
         :param tesseract_path: Путь к Tesseract
         :param libre_office_path: Путь к LibreOffice
+        :param ocr_lang: Язык Tesseract OCR
         """
+        pdf_parser = PdfParser()
         self._parsers = [
-            PdfParser(),
-            ImageParser(tesseract_path),
-            DocxParser(self._pdf_parser, libre_office_path)
+            pdf_parser,
+            ImageParser(ocr_lang, tesseract_path),
+            DocxParser(pdf_parser, libre_office_path)
         ]
 
     def parse(self, path: str) -> Document:

@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 import os
 import platform
 import subprocess
@@ -7,15 +7,15 @@ from tempfile import TemporaryDirectory
 
 from document_parser.domain.base_document_parser import BaseDocumentParser
 from document_parser.domain.entities.document import Document
-from document_parser.infrastructure.pdf_parser.pdf_parser import PdfParser
 
 
 class DocxParser(BaseDocumentParser):
+    _SUPPORTED_EXTENSIONS = ['.docx']
     _LIBRE_OFFICE_WINDOWS_PATH = r'C:\Program Files\LibreOffice\program\soffice.exe'
 
-    _pdf_parser = PdfParser()
+    def __init__(self, pdf_parser: BaseDocumentParser, libre_office_path: Optional[str] = None):
+        self._pdf_parser = pdf_parser
 
-    def __init__(self, libre_office_path: Optional[str] = None):
         if libre_office_path is not None:
             self._libre_office_path = libre_office_path
 
@@ -25,8 +25,11 @@ class DocxParser(BaseDocumentParser):
             else:
                 self._libre_office_path = 'libreoffice'
 
+    @property
+    def supported_extensions(self) -> List[str]:
+        return self._SUPPORTED_EXTENSIONS
+
     def process(self, path: str) -> Document:
-        # TODO: Потенциальная коллизия имен при многопоточной работе
         with TemporaryDirectory() as temp_dir:
             pdf_path = self._docx2pdf(temp_dir, path)
 

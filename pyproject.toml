@@ -1,6 +1,6 @@
 [project]
 name = "document-parser"
-version = "2.1.0"
+version = "2.1.1"
 description = "Пакет для разбивки различных документов (docx, pdf, изображения) на страницы, блоки, строки и слова"
 readme = "README.md"
 authors = [

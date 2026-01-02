@@ -13,19 +13,25 @@ from document_parser.domain.value_objects.bounding_box import BoundingBox
 
 
 class PdfParser(BaseDocumentParser):
+    _SUPPORTED_EXTENSIONS = ['.pdf']
+
+    @property
+    def supported_extensions(self) -> List[str]:
+        return self._SUPPORTED_EXTENSIONS
+
     def process(self, path: str) -> Document:
-        pdf_document = fitz.open(path)
-        parsed_pages = []
+        with fitz.open(path) as file:
+            parsed_pages = []
 
-        for page in pdf_document:
-            page_blocks = self._parse_page_words(page)
-            parsed_pages.append(Page(blocks=page_blocks))
+            for page in file:
+                page_blocks = self._parse_page_words(page)
+                parsed_pages.append(Page(blocks=page_blocks))
 
-        return Document(
-            path=path,
-            source_type='pdf',
-            pages=parsed_pages
-        )
+            return Document(
+                path=path,
+                source_type='pdf',
+                pages=parsed_pages
+            )
 
     def _parse_page_words(self, page: fitz.Page) -> List[Block]:
         words = page.get_text('words')

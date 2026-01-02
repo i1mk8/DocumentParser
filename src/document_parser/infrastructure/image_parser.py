@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 import platform
 import os
 
@@ -15,8 +15,8 @@ from document_parser.domain.entities.page import Page
 
 
 class ImageParser(BaseDocumentParser):
+    _SUPPORTED_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif']
     _TESSERACT_WINDOWS_PATH = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-
     _LXML_NAMESPACE = {'alto': 'http://www.loc.gov/standards/alto/ns-v3#'}
 
     def __init__(self, tesseract_path: Optional[str] = None):
@@ -25,6 +25,9 @@ class ImageParser(BaseDocumentParser):
         elif platform.system() == 'Windows' and os.path.exists(self._TESSERACT_WINDOWS_PATH):
             pytesseract.pytesseract.tesseract_cmd = self._TESSERACT_WINDOWS_PATH
 
+    @property
+    def supported_extensions(self) -> List[str]:
+        return self._SUPPORTED_EXTENSIONS
 
     def process(self, path: str) -> Document:
         xml_ocr = pytesseract.image_to_alto_xml(path, lang='rus')

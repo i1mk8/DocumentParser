@@ -4,7 +4,6 @@ import os
 
 import pytesseract
 from lxml import etree
-from lxml.etree import _Element
 
 from document_parser.domain.base_document_parser import BaseDocumentParser
 from document_parser.domain.value_objects.bounding_box import BoundingBox
@@ -42,17 +41,17 @@ class ImageParser(BaseDocumentParser):
             pages=[page]
         )
 
-    def _parse_block(self, block_element: _Element) -> Block:
+    def _parse_block(self, block_element: etree._Element) -> Block:
         line_elements = block_element.findall('.//alto:TextLine', namespaces=self._LXML_NAMESPACE)
         parsed_lines = [self._parse_line(line) for line in line_elements]
         return Block(lines=parsed_lines)
 
-    def _parse_line(self, line_element: _Element) -> Line:
+    def _parse_line(self, line_element: etree._Element) -> Line:
         word_elements = line_element.findall('.//alto:String', namespaces=self._LXML_NAMESPACE)
         parsed_words = [self._parse_word(word) for word in word_elements]
         return Line(words=parsed_words)
 
-    def _parse_word(self, word_element: _Element) -> Word:
+    def _parse_word(self, word_element: etree._Element) -> Word:
         text = word_element.get('CONTENT')
         left = float(word_element.get('HPOS'))
         top = float(word_element.get('VPOS'))

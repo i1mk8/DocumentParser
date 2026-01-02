@@ -2,9 +2,7 @@ from typing import Optional
 import os
 
 from document_parser.application.document_parser_exceptions import UnsupportedFileError
-
 from document_parser.domain.entities.document import Document
-
 from document_parser.infrastructure.image_parser.image_parser import ImageParser
 from document_parser.infrastructure.pdf_parser.pdf_parser import PdfParser
 from document_parser.infrastructure.docx_parser.docx_parser import DocxParser

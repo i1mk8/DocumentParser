@@ -1,5 +1,4 @@
 from typing import Optional
-
 import os
 import platform
 import subprocess
@@ -8,7 +7,6 @@ from tempfile import TemporaryDirectory
 
 from document_parser.domain.base_document_parser import BaseDocumentParser
 from document_parser.domain.entities.document import Document
-
 from document_parser.infrastructure.pdf_parser.pdf_parser import PdfParser
 
 

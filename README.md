@@ -10,9 +10,14 @@
 Для обработки изображений требуется установить [Tesseract](https://github.com/tesseract-ocr/tesseract)
 
 Для обработки DOCX требуется установить [LibreOffice](https://libreoffice.org)
+
+### Установка с помощью [uv](https://github.com/astral-sh/uv) (Рекомендуется)
+```commandline
+uv add "document-parser @ git+https://github.com/i1mk8/DocumentParser.git"
 ```
-git submodule add https://github.com/i1mk8/DocumentParser.git
-pip install -e DocumentParser
+### Установка с помощью pip
+```commandline
+pip install git+https://github.com/i1mk8/DocumentParser.git
 ```
 ## Использование
 ```python

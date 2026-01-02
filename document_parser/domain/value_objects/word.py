@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from DocumentParser.domain.ValueObjects.BoundingBox import BoundingBox
+from document_parser.domain.value_objects.bounding_box import BoundingBox
 
 
 class Word(BaseModel):

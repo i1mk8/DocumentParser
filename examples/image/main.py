@@ -1,4 +1,4 @@
-from DocumentParser import DocumentParser
+from document_parser import DocumentParser
 
 document_parser = DocumentParser()
 result = document_parser.parse('image.png')

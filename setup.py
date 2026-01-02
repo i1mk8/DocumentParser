@@ -16,6 +16,6 @@ setup(
     long_description_content_type='text/markdown',
 
     url='https://github.com/i1mk8/DocumentParser',
-    packages=find_packages(include=['DocumentParser', 'DocumentParser.*']),
+    packages=find_packages(include=['document_parser', 'document_parser.*']),
     install_requires=required
 )

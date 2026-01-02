@@ -6,13 +6,13 @@ import subprocess
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from DocumentParser.domain.IDocumentParser import IDocumentParser
-from DocumentParser.domain.entities.document import Document
+from document_parser.domain.base_document_parser import BaseDocumentParser
+from document_parser.domain.entities.document import Document
 
-from DocumentParser.infrastructure.PdfParser.PdfParser import PdfParser
+from document_parser.infrastructure.pdf_parser.pdf_parser import PdfParser
 
 
-class DocxParser(IDocumentParser):
+class DocxParser(BaseDocumentParser):
     _LIBRE_OFFICE_WINDOWS_PATH = r'C:\Program Files\LibreOffice\program\soffice.exe'
 
     _pdf_parser = PdfParser()

@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import List
 
-from DocumentParser.domain.ValueObjects.line import Line
+from document_parser.domain.value_objects.line import Line
 
 
 class Block(BaseModel):

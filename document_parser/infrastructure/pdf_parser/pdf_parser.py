@@ -1,18 +1,18 @@
-from DocumentParser.domain.IDocumentParser import IDocumentParser
+from document_parser.domain.base_document_parser import BaseDocumentParser
 from typing import List
 from collections import defaultdict
 
-from DocumentParser.domain.entities.page import Page
-from DocumentParser.domain.entities.block import Block
-from DocumentParser.domain.entities.document import Document
-from DocumentParser.domain.ValueObjects.line import Line
-from DocumentParser.domain.ValueObjects.word import Word
-from DocumentParser.domain.ValueObjects.BoundingBox import BoundingBox
+from document_parser.domain.entities.page import Page
+from document_parser.domain.entities.block import Block
+from document_parser.domain.entities.document import Document
+from document_parser.domain.value_objects.line import Line
+from document_parser.domain.value_objects.word import Word
+from document_parser.domain.value_objects.bounding_box import BoundingBox
 
 import fitz
 
 
-class PdfParser(IDocumentParser):
+class PdfParser(BaseDocumentParser):
     def process(self, path: str) -> Document:
         pdf_document = fitz.open(path)
         parsed_pages = []

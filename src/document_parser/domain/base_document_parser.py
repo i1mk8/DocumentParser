@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from document_parser.domain.entities.document import Document
+from domain.document import Document
 
 
 class BaseDocumentParser(ABC):

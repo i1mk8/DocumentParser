@@ -4,12 +4,12 @@ from collections import defaultdict
 import fitz
 
 from document_parser.domain.base_document_parser import BaseDocumentParser
-from document_parser.domain.entities.page import Page
-from document_parser.domain.entities.block import Block
-from document_parser.domain.entities.document import Document
-from document_parser.domain.value_objects.line import Line
-from document_parser.domain.value_objects.word import Word
-from document_parser.domain.value_objects.bounding_box import BoundingBox
+from domain.page import Page
+from domain.block import Block
+from domain.document import Document
+from domain.line import Line
+from domain.word import Word
+from domain.bounding_box import BoundingBox
 
 
 class PdfParser(BaseDocumentParser):

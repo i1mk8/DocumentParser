@@ -11,7 +11,7 @@ from document_parser.infrastructure.docx_parser import DocxParser
 class DocumentParser:
     """
     Класс для разбивки документов на страницы, блоки, строки и слова.
-    Поддерживаемые форматы документов: docx, pdf, png, jpg, jpeg, tiff, bmp, gif
+    Поддерживаемые форматы документов: docx, pdf, png, jpg, jpeg, tiff, bmp, gif.
     """
 
     def __init__(self, tesseract_path: Optional[str]=None, libre_office_path: Optional[str]=None, ocr_lang: str='rus'):
@@ -33,6 +33,7 @@ class DocumentParser:
 
         :param path: Путь к файлу, который будет обработан
         :return: Обработанный файл
+        :raises UnsupportedFileError: Формат файла не поддерживается
         """
         if not os.path.exists(path):
             raise FileNotFoundError(f'Путь {path} не существует')
@@ -42,4 +43,4 @@ class DocumentParser:
             if extension in parser.supported_extensions:
                 return parser.process(path)
 
-        raise UnsupportedFileError(f'Файл {path} с расширением {extension} не поддерживается')
+        raise UnsupportedFileError(path, extension)

@@ -15,11 +15,20 @@ from domain.page import Page
 
 
 class ImageParser(BaseDocumentParser):
+    """
+    Парсер изображений документов.
+    Использует Tesseract для распознавания текста.
+    """
+
     _SUPPORTED_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif']
     _TESSERACT_WINDOWS_PATH = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
     _LXML_NAMESPACE = {'alto': 'http://www.loc.gov/standards/alto/ns-v3#'}
 
     def __init__(self, lang: str, tesseract_path: Optional[str] = None):
+        """
+        :param lang: Язык Tesseract OCR
+        :param tesseract_path: Путь к Tesseract
+        """
         self._lang = lang
 
         if tesseract_path is not None:

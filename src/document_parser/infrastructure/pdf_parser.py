@@ -13,6 +13,8 @@ from domain.bounding_box import BoundingBox
 
 
 class PdfParser(BaseDocumentParser):
+    """Парсер pdf документов."""
+
     _SUPPORTED_EXTENSIONS = ['.pdf']
 
     @property

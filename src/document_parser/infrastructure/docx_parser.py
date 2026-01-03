@@ -10,10 +10,19 @@ from domain.document import Document
 
 
 class DocxParser(BaseDocumentParser):
+    """
+    Парсер docx документов.
+    Работает через конвертацию docx -> pdf с помощью LibreOffice, после использует PdfParser для извлечения данных.
+    """
+
     _SUPPORTED_EXTENSIONS = ['.docx']
     _LIBRE_OFFICE_WINDOWS_PATH = r'C:\Program Files\LibreOffice\program\soffice.exe'
 
     def __init__(self, pdf_parser: BaseDocumentParser, libre_office_path: Optional[str] = None):
+        """
+        :param pdf_parser: Экземпляр парсера pdf
+        :param libre_office_path: Путь к LibreOffice
+        """
         self._pdf_parser = pdf_parser
 
         if libre_office_path is not None:

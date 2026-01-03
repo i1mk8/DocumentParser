@@ -5,4 +5,6 @@ from domain.block import Block
 
 
 class Page(BaseModel):
+    """Страница обработанного документа."""
+
     blocks: List[Block]

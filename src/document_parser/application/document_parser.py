@@ -20,7 +20,9 @@ class DocumentParser:
         :param libre_office_path: Путь к LibreOffice
         :param ocr_lang: Язык Tesseract OCR
         """
-        pdf_parser = PdfParser()
+        image_parser = ImageParser(ocr_lang, tesseract_path)
+        pdf_parser = PdfParser(image_parser)
+
         self._parsers = [
             pdf_parser,
             ImageParser(ocr_lang, tesseract_path),

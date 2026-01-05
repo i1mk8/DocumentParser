@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Dict
 
 from domain.page import Page
 
@@ -20,3 +20,12 @@ class Document(BaseModel):
         :return: Строка JSON
         """
         return self.model_dump_json(**kwargs)
+
+    def to_dict(self, **kwargs) -> Dict:
+        """
+        Преобразует документ в словарь.
+
+        :param kwargs: Аргументы, передаваемые в model_dump
+        :return: Словарь
+        """
+        return self.model_dump(**kwargs)

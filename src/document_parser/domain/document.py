@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import List, Dict
 
-from domain.page import Page
+from document_parser.domain.page import Page
 
 
 class Document(BaseModel):

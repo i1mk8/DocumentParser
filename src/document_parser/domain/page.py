@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import List
 
-from domain.block import Block
+from document_parser.domain.block import Block
 
 
 class Page(BaseModel):

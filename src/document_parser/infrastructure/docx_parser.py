@@ -6,7 +6,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from document_parser.domain.base_document_parser import BaseDocumentParser
-from domain.document import Document
+from document_parser.domain.document import Document
 
 
 class DocxParser(BaseDocumentParser):

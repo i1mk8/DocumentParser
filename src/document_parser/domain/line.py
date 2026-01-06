@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import List
 
-from domain.word import Word
+from document_parser.domain.word import Word
 
 
 class Line(BaseModel):

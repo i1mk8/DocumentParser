@@ -9,13 +9,13 @@ from document_parser.domain.base_document_parser import BaseDocumentParser
 from document_parser.domain.document import Document
 
 
-class DocxParser(BaseDocumentParser):
+class MicrosoftWordParser(BaseDocumentParser):
     """
-    Парсер docx документов.
-    Работает через конвертацию docx -> pdf с помощью LibreOffice, после использует PdfParser для извлечения данных.
+    Парсер Microsoft Word документов.
+    Работает через конвертацию в pdf с помощью LibreOffice, после использует PdfParser для извлечения данных.
     """
 
-    _SUPPORTED_EXTENSIONS = ['.docx']
+    _SUPPORTED_EXTENSIONS = ['.docx', '.doc', '.rtf', '.odt', '.dot', '.dotx']
     _LIBRE_OFFICE_WINDOWS_PATH = r'C:\Program Files\LibreOffice\program\soffice.exe'
 
     def __init__(self, pdf_parser: BaseDocumentParser, libre_office_path: Optional[str] = None):
@@ -40,22 +40,23 @@ class DocxParser(BaseDocumentParser):
 
     def process(self, path: str) -> Document:
         with TemporaryDirectory() as temp_dir:
-            pdf_path = self._docx2pdf(temp_dir, path)
+            pdf_path = self._convert_to_pdf(temp_dir, path)
 
             result = self._pdf_parser.process(pdf_path)
             result.path = path
-            result.source_type = 'docx'
+            result.source_type = Path(path).suffix.lstrip('.').lower()
 
             return result
 
-    def _docx2pdf(self, out_dir: str, docx_path) -> str:
+    def _convert_to_pdf(self, out_dir: str, file_path: str) -> str:
         subprocess.run(
-            [self._libre_office_path, '--headless', '--convert-to', 'pdf', '--outdir', out_dir, docx_path],
+            [self._libre_office_path, '--headless', '--convert-to', 'pdf', '--outdir', out_dir, file_path],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=True
         )
 
-        docx_path = Path(docx_path)
-        pdf_path = Path(os.path.join(out_dir, docx_path.name)).with_suffix('.pdf')
+        original_path = Path(file_path)
+        pdf_path = Path(os.path.join(out_dir, original_path.name)).with_suffix('.pdf')
+
         return str(pdf_path)

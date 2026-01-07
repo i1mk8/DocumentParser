@@ -5,13 +5,13 @@ from document_parser.application.document_parser_exceptions import UnsupportedFi
 from document_parser.domain.document import Document
 from document_parser.infrastructure.image_parser import ImageParser
 from document_parser.infrastructure.pdf_parser import PdfParser
-from document_parser.infrastructure.docx_parser import DocxParser
+from document_parser.infrastructure.microsoft_word_parser import MicrosoftWordParser
 
 
 class DocumentParser:
     """
     Класс для разбивки документов на страницы, блоки, строки и слова.
-    Поддерживаемые форматы документов: docx, pdf, png, jpg, jpeg, tiff, bmp, gif.
+    Поддерживаемые форматы документов: документы Microsoft Word, pdf, изображения.
     """
 
     def __init__(self, tesseract_path: Optional[str]=None, libre_office_path: Optional[str]=None, ocr_lang: str='rus'):
@@ -26,7 +26,7 @@ class DocumentParser:
         self._parsers = [
             pdf_parser,
             ImageParser(ocr_lang, tesseract_path),
-            DocxParser(pdf_parser, libre_office_path)
+            MicrosoftWordParser(pdf_parser, libre_office_path)
         ]
 
     def parse(self, path: str) -> Document:

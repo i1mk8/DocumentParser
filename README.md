@@ -3,13 +3,13 @@
 Пакет для разбивки документов на страницы, блоки, строки и слова.
 
 Поддерживаемые форматы документов:
-* DOCX
+* DOCX, DOC, RTF, ODT, DOT, DOTX
 * PDF
 * PNG, JPG, JPEG, TIFF, BMP, GIF
 ## Установка
 Для обработки изображений требуется установить [Tesseract](https://github.com/tesseract-ocr/tesseract)
 
-Для обработки DOCX требуется установить [LibreOffice](https://libreoffice.org)
+Для обработки документов Microsoft Word требуется установить [LibreOffice](https://libreoffice.org)
 
 ### Установка с помощью [uv](https://github.com/astral-sh/uv) (Рекомендуется)
 ```commandline
@@ -51,4 +51,4 @@ Document(
 Примеры работы с разными типами документов:
 * [DOCX](examples/docx)
 * [PDF](examples/pdf)
-* [Изображение (PNG)](examples/image)
+* [PNG](examples/image)

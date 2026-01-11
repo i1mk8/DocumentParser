@@ -29,3 +29,20 @@ class Document(BaseModel):
         :return: Словарь
         """
         return self.model_dump(**kwargs)
+
+    def to_text(self) -> str:
+        """
+        Преобразует документ в текст
+
+        :return: Текст
+        """
+        text = ''
+
+        for page in self.pages:
+            for block in page.blocks:
+                for line in block.lines:
+                    text += f'{" ".join([word.word for word in line.words])}\n'
+            text += '\n\n'
+        text += '\n\n\n'
+
+        return text.strip()

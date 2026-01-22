@@ -7,7 +7,7 @@
 * PDF
 * PNG, JPG, JPEG, TIFF, BMP, GIF
 
-[Демонстрация работы](https://github.com/i1mk8/DocumentParserDemo)
+**[Демонстрация работы](https://github.com/i1mk8/DocumentParserDemo)**
 ## Установка
 Для обработки изображений требуется установить [Tesseract](https://github.com/tesseract-ocr/tesseract)
 

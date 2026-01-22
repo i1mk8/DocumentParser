@@ -12,8 +12,8 @@ wheels = [
 ]
 
 [[package]]
-name = "document-parser"
-version = "2.4.6"
+name = "doc-layout-parser"
+version = "2.5.6"
 source = { editable = "." }
 dependencies = [
     { name = "lxml" },

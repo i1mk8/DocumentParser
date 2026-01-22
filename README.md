@@ -13,15 +13,15 @@
 
 ### Установка с помощью [uv](https://github.com/astral-sh/uv) (Рекомендуется)
 ```commandline
-uv add document-parser
+uv add doc-layout-parser
 ```
 ### Установка с помощью pip
 ```commandline
-pip install document-parser
+pip install doc-layout-parser
 ```
 ## Использование
 ```python
->>> from document_parser import DocumentParser
+>>> from doc_layout_parser import DocumentParser
 
 >>> document_parser = DocumentParser()
 >>> result = document_parser.parse('image.png')

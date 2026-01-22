@@ -5,13 +5,13 @@ from tempfile import TemporaryDirectory
 
 import fitz
 
-from document_parser.domain.base_document_parser import BaseDocumentParser
-from document_parser.domain.page import Page
-from document_parser.domain.block import Block
-from document_parser.domain.document import Document
-from document_parser.domain.line import Line
-from document_parser.domain.word import Word
-from document_parser.domain.bounding_box import BoundingBox
+from doc_layout_parser.domain.base_document_parser import BaseDocumentParser
+from doc_layout_parser.domain.page import Page
+from doc_layout_parser.domain.block import Block
+from doc_layout_parser.domain.document import Document
+from doc_layout_parser.domain.line import Line
+from doc_layout_parser.domain.word import Word
+from doc_layout_parser.domain.bounding_box import BoundingBox
 
 
 class PdfParser(BaseDocumentParser):

@@ -5,8 +5,8 @@ import subprocess
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from document_parser.domain.base_document_parser import BaseDocumentParser
-from document_parser.domain.document import Document
+from doc_layout_parser.domain.base_document_parser import BaseDocumentParser
+from doc_layout_parser.domain.document import Document
 
 
 class MicrosoftWordParser(BaseDocumentParser):
